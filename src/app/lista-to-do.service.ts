@@ -7,51 +7,56 @@ export interface elementToDo {
   Wykonane: boolean;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ListaToDoService {
-lista: Array<elementToDo> = new Array<elementToDo>();
-obs = new BehaviorSubject<Array<elementToDo>>([]);
 
-dodajElement(opis: string): elementToDo
-{
-  let nowyElement: elementToDo = {nazwa: opis, Wykonane: false, dataWykonania: null};
-  this.lista.push(nowyElement);
-  this. obs.next(this.lista);
-  return nowyElement;
-}
-
-usun(item)
-{
-  this.lista = this.lista.filter(e => e!= item);
-  this.obs.next(this.lista);
-}
+  lista: Array<elementToDo> = new Array<elementToDo>();
+  _obs =  new BehaviorSubject<Array<elementToDo>>([]);
 
 
-wykonane(item: elementToDo)
-{
-item.Wykonane = true;
-item.dataWykonania = new Date;
-this.obs.next(this.lista);
+  dodajElement(opis: string): elementToDo
+  {
+    let nowyElement: elementToDo = {nazwa: opis, Wykonane: false, dataWykonania: null};
+    this.lista.push(nowyElement);
+    this._obs.next(this.lista);
+    return nowyElement;
+  }
 
-}
-getList()
-{
-  return this.obs.asObservable();
-}
+
+  usun(item)
+  {
+    this.lista = this.lista.filter(e => e != item);
+    this._obs.next(this.lista);
+  }
+
+  wykonane(item: elementToDo)
+  {
+    item.Wykonane = true;
+    item.dataWykonania = new Date();
+    this._obs.next(this.lista);
+  }
+
+
+  getList()
+  {
+    return this._obs.asObservable();
+  }
 
   constructor() {
-    let lista = localStorage.getItem("listaTodo");
-
+    let lista = localStorage.getItem("listaTODo");
     if(lista != undefined && lista != "")
-    this.lista = JSON.parse(lista);
-    else this.lista = [];
+      this.lista =  JSON.parse(lista);
+    else  this.lista = [];
 
-    this. obs.next(this.lista);
+    this._obs.next(this.lista);
+
     console.log(this.lista);
-    this. getList().subscribe( (item) => {
-      localStorage.setItem("listaToDo", JSON.stringify(this.lista));
-    });
-   }
+
+    this.getList().subscribe( (item) => {
+      localStorage.setItem("listaTODo", JSON.stringify(this.lista));
+    } );
+  }
 }

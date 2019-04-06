@@ -1,3 +1,4 @@
+    
 import { Component } from '@angular/core';
 import { ListaToDoService } from './lista-to-do.service';
 
@@ -15,16 +16,12 @@ export class AppComponent {
 
   }
 
- 
-
 
   dodajDoListy()
   {
 
     this._lista.dodajElement(this.tekstInput);
     this.tekstInput = '';
- 
   }
-
 
 }

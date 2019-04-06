@@ -1,7 +1,5 @@
-import{ ListaToDoService, elementToDo} from './../lista-to-do.service';
-import { Component, OnInit } from '@angular/core';
-
-
+import { ListaToDoService, elementToDo } from './../lista-to-do.service';
+import {Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -13,26 +11,23 @@ import { Component, OnInit } from '@angular/core';
 
 export class ListaComponent implements OnInit {
 
-
   lista: Array<elementToDo>;
-  constructor(private  _listaToDo: ListaToDoService) {
+
+  constructor(private _listaToDo: ListaToDoService) {
     this._listaToDo.getList().subscribe( (_list) => {
-      this.lista = _list.filter(e => e.Wykonane);
+      this.lista = _list.filter(e => !e.Wykonane);
     })
    }
-   usun(item)
-   {
- this._listaToDo.usun(item);
-   }
- 
+
    
    wykonane(item)
    {
- this._listaToDo.wykonane(item);
- 
+    this._listaToDo.wykonane(item);
    }
-
-
+usun(item)
+   {
+    this._listaToDo.usun(item);
+   }
 
 
   ngOnInit() {
