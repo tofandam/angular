@@ -1,4 +1,4 @@
-li {
+/*li {
     text-align: left;
     width: 100%;
     clear: both;
@@ -10,4 +10,67 @@ li {
       float: right;
       width: 50px;
     }
+  }*/
+li:nth-child(even) {background: rgb(253, 243, 185)}
+li:nth-child(odd) {background: rgb(240, 252, 171)}
+
+
+li {
+    text-align: left;
+    width: 100%;
+    clear: both;
+    margin-top: 5px;
+    padding: 3px;
+    background-color: wheat;
+    height: 43px;
+    text-shadow: 1px 1px 2px rgb(190, 190, 255);
+    letter-spacing: -1px;
+    font-weight: 600;
+
+    span {
+      float: right;
+      width: 50px;
+      margin-bottom: -25px;
+      position: relative; 
+      top: 0px;
+      overflow: auto;
+      word-wrap:break-word;
+      position: relative;
+      top: 0px;
+    }
+    .dni{
+      float: right;
+      width: 300px;
+      text-align: right;
+      position: relative;
+      left: 100px;
+      top: 0px;
+      text-decoration: overline;
+      text-shadow: 1px 1px 0 black;
+    }
+    .przyciski{
+     position: relative;
+    top: -40px;
+     
+    }
+ }
+  span.btn {
+    display: flex;
+    float: right;
+
+  }
+
+  &.ostatni {
+    color: red;
+  }
+
+  &.odd > span:nth-child(1) {
+    margin-right: 30px;    
+    height: 100%;
+    background-color: #0d0d0d;
+    color: #fff;
+  }
+
+  ol{
+    color:black;
   }

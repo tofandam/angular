@@ -1,9 +1,14 @@
 <h1>Lista do zrobienia</h1>
-<ol>
-  <li *ngFor="let item of lista; let i = index">{{item.nazwa}}
-     <span class="btn btn-danger"  (click)="usun(item)">✘</span>
-     <span class="btn btn-info"  (click)="wykonane(item)">✓</span>
+<ol >
+  <li style="color: black;" *ngFor="let item of lista; let i = index"    
+      [ngStyle]="{'color': bgColor(item)}">
+     <p style="width: 80%; overflow: auto;"> {{item.nazwa}}</p>
+     <div class="przyciski"><span class="btn btn-danger"  (click)="usun(item)">✘</span>
+     <span class="btn btn-info"  (click)="wykonane(item)">✓</span> 
+    </div>
+     <div class="dni">{{iledni(item)}}</div>
      
-     
+    
       </li>
 </ol>
+
